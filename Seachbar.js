@@ -76,7 +76,6 @@ export default function SearchBar() {
 const styles = StyleSheet.create({
   //circle border
   container: {
-    flexDirection: 'row',
     alignItems: 'center',
     width: 300,
     height: 50,
@@ -90,6 +89,7 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 12,
     paddingRight: 12,
+    paddingTop: 11,
     fontSize: 20,
     color: 'black',
     borderWidth: 0,
@@ -97,9 +97,8 @@ const styles = StyleSheet.create({
     outlineStyle: 'none',
   },
   search: {
-    width: 50,
-    height: 50,
-    borderRadius: 20,
+    marginTop: 40,
+    borderRadius: 10,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',

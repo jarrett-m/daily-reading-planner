@@ -2,7 +2,7 @@
 
 //Get the start date
 
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, SafeAreaView } from 'react-native';
 import { IconButton } from "@react-native-material/core";
 import CalendarPicker from 'react-native-calendar-picker';
@@ -17,11 +17,21 @@ export default function GetDates(props) {
     const [daysToRead, setDaysToRead] = React.useState(null);
     const [pagesToReadADay, setPagesToReadADay] = React.useState(null);
     const [word, setWord] = React.useState("days");
-    const arrowButton = <Icon name="arrow-right" size={30} />;
+    const [width, setWidth] = React.useState(null);
 
-    const handleStartDate = (text) => {
-        setStartDate(text);
-    };
+    const arrowButton = <Icon name="arrow-right" size={30} />;
+    
+    
+    useEffect(() => {
+        if (window.innerWidth < window.innerHeight) {
+            setWidth(window.innerWidth * 0.8);
+        }
+        else {
+            setWidth(480);
+
+        }
+    }, []);
+
 
     const getDates = () => {
         if (startDate == null || endDate == null) {
@@ -66,8 +76,8 @@ export default function GetDates(props) {
                 allowRangeSelection={true}
                 minDate={new Date()}
                 selectedDayColor="#F4C2C2"
-                width={500}
                 onDateChange={onDateChange}
+                width={width}
             />
             <IconButton icon={arrowButton} style={styles.search} onPress={getDates} />
             </View>
@@ -132,12 +142,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 20,
+        marginLeft: 50,
+        marginRight: 50,
     },
     result: {
         fontSize: 20,
         marginBottom: 20,
-        marginLeft: 80,
-        marginRight: 80,
     },
 
 });
